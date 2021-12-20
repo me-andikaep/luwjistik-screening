@@ -21,7 +21,6 @@ const DashboardLayout = (props) => {
 	return (
 		<div className='dashboard-container'>
 			<Header />
-			tesssss
 			<Suspense fallback={<span>Loading</span>}>
 				<Switch>{getRoutes(routes)}</Switch>
 			</Suspense>

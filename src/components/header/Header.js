@@ -16,12 +16,14 @@ const Header = (props) => {
 			setLoading(false);
 		}, 1000);
 	};
+
+  
 	return (
 		<div className='header-container'>
 			<div>Order</div>
 			<button
 				className={`${loading ? 'loading' : ''}  btn-logout`}
-				onClick={onLogout}
+				onClick={() => onLogout()}
 			>
 				Logout
         {loading && (
