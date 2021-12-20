@@ -19,7 +19,7 @@ const Login = () => {
 	const dispatch = useDispatch();
 	let history = useHistory();
 
-	function onSibmit(e) {
+	const onSibmit = (e) => {
 		e.preventDefault();
 
 		// let email = emailRef?.current?.value;
@@ -38,7 +38,7 @@ const Login = () => {
 				console.log('err login', err.message);
 				OnError({ text: err.message });
 			});
-	}
+	};
 
 	return (
 		<div className='container-login'>

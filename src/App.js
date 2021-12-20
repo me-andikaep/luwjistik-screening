@@ -32,7 +32,6 @@ function App(props) {
 			{...rest}
 			render={(props) =>
 				checkAuth() ? (
-					// auth ? (
 					<Component {...props} />
 				) : (
 					<Redirect

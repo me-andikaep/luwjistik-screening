@@ -10,6 +10,28 @@ body {
   box-sizing: border-box;
 }
 
+@mixin btn {
+  padding: 6px 18px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &.loading{
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .loading-item{
+    width: 18px !important;
+    height: 18px !important;
+    margin-left: 8px;
+    fill: $PRIMARY !important;
+  }
+}
+
 .App{
   width: 100vw;
   height: 100vh;
@@ -58,5 +80,33 @@ body {
         color: $PRIMARY;
       }
     }
+  }
+}
+
+.dashboard-container{
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: $BACKGROUND;
+}
+
+.header-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
+  padding: 0 5%;
+  background-color: $SECONDARY;
+
+  .btn-logout{
+    background-color: $WHITE1;
+    border: 1px solid $WHITE1;
+    color: $PRIMARY;
+    font-size:14px;
+
+    @include btn()
   }
 }

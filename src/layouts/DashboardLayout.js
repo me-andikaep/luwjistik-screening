@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import routes from '../config/routes';
+import Header from '../components/header/Header';
 
 const DashboardLayout = (props) => {
 	const getRoutes = (routeList) => {
@@ -18,7 +19,8 @@ const DashboardLayout = (props) => {
 	};
 
 	return (
-		<div className='layout'>
+		<div className='dashboard-container'>
+			<Header />
 			tesssss
 			<Suspense fallback={<span>Loading</span>}>
 				<Switch>{getRoutes(routes)}</Switch>

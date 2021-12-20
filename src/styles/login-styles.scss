@@ -1,4 +1,5 @@
 @import './colors.scss';
+@import './styles.scss';
 
 .container-login{
   display: flex;
@@ -39,28 +40,12 @@
 
     .btn-login{
       margin-top: 20px;
-      padding: 6px 18px;
       background-color: $WHITE1;
       border: 1px solid $THIRDARY;
-      border-radius: 4px;
       color: $PRIMARY;
-      font-weight: bold;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
       font-size:16px;
-    
-    &.loading{
-      opacity: 0.7;
-      pointer-events: none;
-    }
 
-    .loading-item{
-      width: 18px !important;
-      height: 18px !important;
-      margin-left: 8px;
-      fill: $PRIMARY !important;
-    }
+      @include btn();
     }
   }
 
