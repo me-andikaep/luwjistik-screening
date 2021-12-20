@@ -1,25 +1,71 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import DashboardLayout from './layouts/DashboardLayout';
+import Login from './page/Login';
+import './styles/styles.scss';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+	const checkAuth = () => {
+		const session = localStorage.getItem('order-session');
+		if (!session) {
+			return false;
+		}
+		// try {
+		// 	var decoded = decode(token);
+		// 	var exp = decoded.exp;
+		// 	var now = Date.now() / 1000;
+
+		// 	if (exp < now) {
+		// 		localStorage.clear();
+		// 		return false;
+		// 	}
+		// } catch (e) {
+		// 	return false;
+		// }
+
+		return true;
+	};
+
+	const PrivateRoute = ({ component: Component, ...rest }) => (
+		<Route
+			{...rest}
+			render={(props) =>
+				checkAuth() ? (
+					// auth ? (
+					<Component {...props} />
+				) : (
+					<Redirect
+						to={{
+							pathname: '/login',
+							state: { from: props.location },
+						}}
+					/>
+				)
+			}
+		/>
+	);
+
+	return (
+		<div className='App'>
+			<ToastContainer
+				position='top-right'
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+			/>
+			<Switch>
+				<Route path='/login' component={Login} />
+				<PrivateRoute component={DashboardLayout} />
+				{/* <Route path='*' component={Page404} /> */}
+			</Switch>
+		</div>
+	);
 }
 
 export default App;

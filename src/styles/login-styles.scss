@@ -1,0 +1,69 @@
+@import './colors.scss';
+
+.container-login{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  margin: 0 5%;
+  padding: 0 2%;
+
+  .card-login{
+    width: 100%;
+    max-width: 500px;
+    min-width: 250px;
+    border-radius: 8px ;
+    padding: 2rem 2rem;
+
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
+    display: flex;
+    flex-direction: column;
+    background-color: $BACKGROUND;
+
+    .header{
+      width: 100%;
+      color: $PRIMARY;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 1rem 0;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid $PRIMARY;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+
+    .btn-login{
+      margin-top: 20px;
+      padding: 6px 18px;
+      background-color: $WHITE1;
+      border: 1px solid $THIRDARY;
+      border-radius: 4px;
+      color: $PRIMARY;
+      font-weight: bold;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size:16px;
+    
+    &.loading{
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .loading-item{
+      width: 18px !important;
+      height: 18px !important;
+      margin-left: 8px;
+      fill: $PRIMARY !important;
+    }
+    }
+  }
+
+
+
+}
