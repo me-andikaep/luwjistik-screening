@@ -1,0 +1,21 @@
+@mixin btn {
+  padding: 6px 18px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &.loading{
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .loading-item{
+    width: 18px !important;
+    height: 18px !important;
+    margin-left: 8px;
+    fill: $PRIMARY !important;
+  }
+}

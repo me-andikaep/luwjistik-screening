@@ -1,7 +1,7 @@
 import { Route, Redirect, Switch } from 'react-router-dom';
 import DashboardLayout from './layouts/DashboardLayout';
 import Login from './page/Login';
-import './styles/styles.scss';
+import './styles/index.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
@@ -59,7 +59,8 @@ function App(props) {
 				pauseOnHover
 			/>
 			<Switch>
-				<Route path='/login' component={Login} />
+				<Route path='/login' component={Login} exact />
+				<Redirect from='/' to='/login' exact />
 				<PrivateRoute component={DashboardLayout} />
 				{/* <Route path='*' component={Page404} /> */}
 			</Switch>

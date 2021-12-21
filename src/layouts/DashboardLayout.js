@@ -1,9 +1,12 @@
-import { Suspense } from 'react';
+import { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import routes from '../config/routes';
 import Header from '../components/header/Header';
+import Sidebar from '../components/sidebar/Sidebar';
 
 const DashboardLayout = (props) => {
+	const [sidebarOpen, setSidebarOpen] = useState(true);
+
 	const getRoutes = (routeList) => {
 		// console.log('routeList', routeList);
 		return routeList.map((prop, key) => {
@@ -21,9 +24,13 @@ const DashboardLayout = (props) => {
 	return (
 		<div className='dashboard-container'>
 			<Header />
-			<Suspense fallback={<span>Loading</span>}>
+			<Sidebar
+				isOpen={sidebarOpen}
+				setIsOpen={() => setSidebarOpen(!sidebarOpen)}
+			/>
+			<div className={`${sidebarOpen ? '' : 'close'} content-container`}>
 				<Switch>{getRoutes(routes)}</Switch>
-			</Suspense>
+			</div>
 		</div>
 	);
 };

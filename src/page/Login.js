@@ -1,4 +1,3 @@
-import '../styles/login-styles.scss';
 import { BiLogIn } from 'react-icons/bi';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import FormInput from '../components/form/FormInput';
@@ -32,7 +31,7 @@ const Login = () => {
 		LoginHandler({ email: email, password: password }, dispatch)
 			.then((res) => {
 				console.log('res login', res);
-				history.push('/dashboard');
+				history.push('/order');
 			})
 			.catch((err) => {
 				console.log('err login', err.message);
