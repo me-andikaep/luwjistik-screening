@@ -103,7 +103,7 @@ body {
   flex: 1 1;
   justify-content: space-between;
   flex-direction: column;
-  background-color: $BACKGROUND;
+  background-color: $WHITE1;
   transition: all 0.7ms;
 
   &.close{
@@ -147,9 +147,12 @@ body {
         margin-right: auto;
         letter-spacing: 0.7px;
 
+        &:hover {
+          color: $SECONDARY;
+        }
 
         &.active {
-          color: $PRIMARY
+          color: $PRIMARY;
         }
 
         .nav-text{
@@ -192,8 +195,9 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: $BACKGROUND;
+  background-color: $WHITE1;
   transition: all 0.7ms;
+  overflow: hidden;
   
 
   &.close{
@@ -202,8 +206,23 @@ body {
   }
 
   .content{
-    padding: 30px 20px;
+    padding: 50px 30px;
+    
   }
+}
 
+.loading-lazy-page{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: $PRIMARY;
+  font-weight: bolder;
 
+  .loading-item{
+    fill: $PRIMARY !important;
+  }
 }

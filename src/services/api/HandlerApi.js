@@ -3,10 +3,10 @@ const instance = axios;
 
 instance.interceptors.request.use(
 	async (config) => {
-		let token = localStorage.getItem('@token');
+		let token = JSON.parse(localStorage.getItem('order-session'));
 
 		if (token) {
-			config.headers.Authorization = `Bearer ${token}`;
+			config.headers.Authorization = `${token}`;
 			return config;
 		}
 		return config;

@@ -19,3 +19,10 @@
     fill: $PRIMARY !important;
   }
 }
+
+@mixin header-content {
+  font-size: 28px;
+  font-weight: bold;
+  color: $PRIMARY;
+  margin-bottom: 30px;
+}

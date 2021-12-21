@@ -3,15 +3,21 @@ import { FiPackage } from 'react-icons/fi';
 import { MdExpand, MdPermContactCalendar } from 'react-icons/md';
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
-	console.log('setIsOpen', isOpen);
+	// console.log('setIsOpen', isOpen);
+
+	// const currentLocation = window.location.pathname;
 
 	return (
 		<div className={`${isOpen ? '' : 'close'} c-sidebar`}>
 			<ul className={`${isOpen ? '' : 'close'} nav`}>
 				<li className='nav-item'>
-					<NavLink className='nav-link' to={'/order'} activeClassName='active'>
+					<NavLink
+						className='nav-link'
+						to='/order'
+						activeClassName='active'
+						aria-current='true'
+					>
 						<FiPackage />
-
 						<span className={`${isOpen ? '' : 'close'} nav-text`}>Order</span>
 					</NavLink>
 				</li>
@@ -22,7 +28,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 						activeClassName='active'
 					>
 						<MdPermContactCalendar />
-
 						<span className={`${isOpen ? '' : 'close'} nav-text`}>Contact</span>
 					</NavLink>
 				</li>

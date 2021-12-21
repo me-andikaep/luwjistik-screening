@@ -1,0 +1,151 @@
+.content{
+
+  .header-content {
+    @include header-content()
+  }
+
+  .action-list{
+    display: flex;
+    margin-bottom: 20px;
+
+    .add-order-btn{
+      @include btn();
+
+      font-size: 15px;
+      border: none;
+      border-radius:16px;
+      padding: 10px 20px;
+      color: $PRIMARY;
+      border: 1px solid $THIRDARY;
+      background-color: $WHITE1;
+    }
+  }
+
+  .c-table{
+    width: 100%;
+    position: relative;
+    overflow: auto;
+
+    &::-webkit-scrollbar{
+      height: 6px;
+      color: black;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: #919191; 
+      border-radius: 3px;
+    }
+
+    .table{
+      min-width: 768px!important;
+      width: 100%;
+      height: 100%;
+      border-spacing: 0;
+      border-collapse: collapse;
+      overflow: hidden;
+      
+      .thead{
+        background-color: $PRIMARY;
+        // border: 1px solid $THIRDARY;
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        height:45px;
+        border-radius: 8px 8px 0px 0px;
+        overflow: hidden;
+        border-bottom: none;
+
+        .th{
+          display: flex;
+          flex: 1;
+          align-items: center;
+          justify-content: center;
+          color: $WHITE1;
+          font-weight: bold;
+          border: 1px solid $THIRDARY;
+        }
+      }
+
+      .tbody{
+        border-top: none;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0px;
+        height: 100%;
+
+        .row-td{
+          display: flex;
+          flex-direction: row;
+          border: 1px solid $THIRDARY;
+          border-radius: 8px 8px 8px 8px;
+          margin: 5px 0px;
+          background-color: $WHITE1;
+
+          .td{
+            display: flex;
+            flex: 1;
+            padding: 8px;
+            align-items: center;
+            font-size: 14px;
+  
+            &.center{
+              justify-content: center;
+            }
+  
+            &.br{
+              border-right: 1px solid $THIRDARY;
+            }
+  
+            .td-c-info{
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              align-items: center;
+  
+              .title{
+                font-weight: bold;
+                margin-bottom:2px;
+              }
+              .data{
+                font-weight: normal;
+              }
+            }
+  
+            .td-c-info-2{
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+  
+              .row{
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                
+                .title{
+                  display: flex;
+                  flex: 2;
+                  font-weight: bold;
+                  margin-bottom: 2px;
+                  margin-right: 2px;
+                  justify-content: space-between;
+                }
+                .data{
+                  display: flex;
+                  flex: 4;
+                  font-weight: normal;
+                }
+              }
+            }
+
+            .btn-action{
+              @include btn();
+              border: none;
+              color: $PRIMARY;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
