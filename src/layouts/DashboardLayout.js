@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import routes from '../config/routes';
 import Header from '../components/header/Header';
 import Sidebar from '../components/sidebar/Sidebar';
+import MobileMenubar from '../components/sidebar/MobileMenubar';
 
 const DashboardLayout = (props) => {
 	const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -31,6 +32,7 @@ const DashboardLayout = (props) => {
 			<div className={`${sidebarOpen ? '' : 'close'} content-container`}>
 				<Switch>{getRoutes(routes)}</Switch>
 			</div>
+			<MobileMenubar />
 		</div>
 	);
 };

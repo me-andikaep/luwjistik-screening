@@ -82,6 +82,10 @@ body {
   background-color: $PRIMARY;
   z-index: 1050;
 
+  @include media("<=tablet") {
+    padding: 0 50px;
+  }
+
   .btn-logout{
     background-color: $WHITE1;
     border: 1px solid $WHITE1;
@@ -109,6 +113,10 @@ body {
   &.close{
     width: 80px !important;
     transition: all 0.7ms;
+  }
+
+  @include media("<=tablet") {
+    display: none;
   }
 
   .nav {
@@ -182,10 +190,76 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-  
+
     .icon{
       transform: rotate(90deg);
     }
+  }
+}
+
+.c-menubar-mobile {
+  position: fixed;
+  bottom: 0;
+  height: 10vh;
+  width: 100%;
+  box-shadow: 0px 0px 10px #00000029;
+  background: #ffffff;
+  z-index: 1030 !important;
+  background-color: #ffffff;
+
+  display: flex;
+  flex-direction: row;
+
+  @include media(">tablet") {
+      display: none;
+  }
+
+  .menubar-mobile-nav {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+
+      @include media(">=phone") {
+          font-size: 12px;
+      }
+
+      @include media("<phone") {
+          font-size: 10px;
+      }
+
+      .menubar-mobile-nav-link {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          color: #989898;
+          text-decoration: none;
+          flex: 1;
+          padding: 0px 5px;
+
+          .menubar-mobile-nav-link-img {
+              width: 30px;
+              height: 30px;
+              margin-bottom: 5px;
+
+              @include media(">=phone") {
+                  width: 22px;
+                  height: 22px;
+                  margin-bottom: 0px;
+              }
+
+              @include media("<phone") {
+                  width: 18px;
+                  height: 18px;
+                  margin-bottom: 0px;
+              }
+          }
+      }
   }
 }
 
@@ -203,6 +277,11 @@ body {
   &.close{
     margin-left: 80px;
     transition: all 0.7ms;
+  }
+
+  @include media("<=tablet") {
+    margin-left: 0;
+    margin-bottom: 10vh;
   }
 
   .content{

@@ -17,7 +17,6 @@ const Header = (props) => {
 		}, 1000);
 	};
 
-  
 	return (
 		<div className='header-container'>
 			<div>Order</div>
@@ -26,9 +25,9 @@ const Header = (props) => {
 				onClick={() => onLogout()}
 			>
 				Logout
-        {loading && (
-							<ReactLoading type='spinningBubbles' className='loading-item' />
-						)}
+				{loading && (
+					<ReactLoading type='spinningBubbles' className='loading-item' />
+				)}
 			</button>
 		</div>
 	);
