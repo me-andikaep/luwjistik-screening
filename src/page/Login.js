@@ -48,7 +48,7 @@ const Login = () => {
 				</div>
 				<form className='' onSubmit={onSibmit}>
 					<div className='form-group'>
-						<div className='title'>Email</div>
+						<div className='title-login'>Email</div>
 						<FormInput
 							type='text'
 							className='c-custom-input-1'
@@ -56,7 +56,7 @@ const Login = () => {
 						/>
 					</div>
 					<div className='form-group'>
-						<div className='title'>Password</div>
+						<div className='title-login'>Password</div>
 						<FormInput
 							className='c-custom-input-1'
 							type={showPassword ? 'text' : 'password'}

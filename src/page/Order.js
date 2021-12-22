@@ -63,12 +63,9 @@ const Order = (props) => {
 	const dispatch = useDispatch();
 	const orderState = useSelector((state) => state?.order);
 
-	// console.log('orderState', orderState);
-
 	const getOrderList = () => {
 		GetOrderList(dispatch)
 			.then((res) => {
-				// console.log(res);
 				setData(res.data);
 			})
 			.catch((error) => {

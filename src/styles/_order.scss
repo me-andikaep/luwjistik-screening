@@ -46,7 +46,6 @@
       
       .thead{
         background-color: $PRIMARY;
-        // border: 1px solid $THIRDARY;
         display: flex;
         flex-direction: row;
         flex-grow: 1;
@@ -148,4 +147,62 @@
     }
   }
 
+
+  //add order
+  .c-add-order-form{
+    margin: 0px -15px;
+
+    .add-order-form{
+      margin: 15px;
+      box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
+      border-radius:8px;
+      padding: 10px 0px;
+      overflow: hidden;
+    }
+
+    .section-card{
+      border: 1px solid $THIRDARY;
+      margin: 0px 15px 20px 15px;
+      padding: 15px 0px 0px 0px;
+      border-radius: 8px;
+
+      .title-section-card{ 
+        padding: 0px 15px;
+        font-weight: bold;
+        color: $THIRDARY;
+      }
+    }
+
+    .section-flow{
+      display: flex;
+      flex-direction: row;
+      @include media("<tablet") {
+        flex-direction: column;
+    }
+
+      .section-form{
+        display: flex;
+        flex-direction: column;
+        flex:1;
+        padding: 15px;
+      }
+    }
+
+    .section-action{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+
+      .btn-save{
+        @include btn();
+
+        border: none;
+        background-color: $PRIMARY;
+        color: $WHITE1;
+        padding: 10px 20px;
+      }
+    }
+  }
 }
+

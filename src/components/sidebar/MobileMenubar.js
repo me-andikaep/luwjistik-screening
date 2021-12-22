@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import { FiPackage } from 'react-icons/fi';
+import { MdPermContactCalendar } from 'react-icons/md';
 
 const MobileMenubar = (props) => {
 	const onActiveCssBorderTop = {
@@ -22,6 +24,7 @@ const MobileMenubar = (props) => {
 							currentLocation.includes('/order') ? onActiveCssBorderTop : null
 						}
 					></div>
+					<FiPackage className='menubar-mobile-nav-link-img' />
 					Order
 				</NavLink>
 				<NavLink
@@ -34,6 +37,7 @@ const MobileMenubar = (props) => {
 							currentLocation.includes('/contact') ? onActiveCssBorderTop : null
 						}
 					></div>
+					<MdPermContactCalendar className='menubar-mobile-nav-link-img' />
 					Contact
 				</NavLink>
 			</div>
