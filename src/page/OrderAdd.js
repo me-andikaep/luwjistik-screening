@@ -1,99 +1,57 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import FormInput from '../components/form/FormInput';
 import FormInput2 from '../components/form/FormInput2';
 import Loading from '../components/loading/Loading';
 import { PostOrderList } from '../services/orderServices';
-import AddOrderValidation from '../components/validations/AddOrderValidation';
+import { AddOrderValidation } from '../components/validations/AddOrderValidation';
 import { OnWarning } from '../components/toast';
+import { useForm } from '../hooks/useForm';
+import lodash from 'lodash';
 
 const OrderAdd = () => {
-	const [data, setData] = useState({
-		consignee_name: '',
-		consignee_number: '',
-		consignee_address: '',
-		consignee_postal: '',
-		consignee_country: '',
-		consignee_city: '',
-		consignee_state: '',
-		consignee_province: '',
-		consignee_email: '',
-		length: 0,
-		width: 0,
-		height: 0,
-		weight: 0,
-		payment_type: '',
-		pickup_contact_name: '',
-		pickup_contact_number: '',
-		pickup_address: '',
-		pickup_postal: '',
-		pickup_country: '',
-		pickup_city: '',
-		pickup_state: '',
-		pickup_province: '',
-	});
-
-	const [formErrors, setFormErrors] = useState({});
-	const [isValid, setIsValid] = useState(false);
-
-	console.log(formErrors);
-
 	const dispatch = useDispatch();
 	const orderState = useSelector((state) => state?.order);
 
-	// console.log('authState', authState);
+	const validation = AddOrderValidation.validations;
 
-	const validateForm = () => {
-		let fields = data;
-		let errors = {};
-		let formIsValid = true;
+	const { handleSubmit, handleChange, data, errors } = useForm({
+		validations: validation,
+		onSubmit: () => {
+			console.log('datanya', data);
+		},
+		initialValues: {
+			consignee_name: '',
+			consignee_number: '',
+			consignee_address: '',
+			consignee_postal: '',
+			consignee_country: '',
+			consignee_city: '',
+			consignee_state: '',
+			consignee_province: '',
+			consignee_email: '',
+			length: 0,
+			width: 0,
+			height: 0,
+			weight: 0,
+			payment_type: '',
+			pickup_contact_name: '',
+			pickup_contact_number: '',
+			pickup_address: '',
+			pickup_postal: '',
+			pickup_country: '',
+			pickup_city: '',
+			pickup_state: '',
+			pickup_province: '',
+		},
+	});
 
-		AddOrderValidation(fields, errors, formIsValid);
-
-		setIsValid(formIsValid);
-		setFormErrors(errors);
-		return formIsValid;
-	};
-
-	const onSuccess = (e) => {
-		e.preventDefault();
-		validateForm();
-
-		const body = {
-			consignee_name: data.consignee_name,
-			consignee_number: data.consignee_number,
-			consignee_address: data.consignee_address,
-			consignee_postal: data.consignee_postal,
-			consignee_country: data.consignee_country,
-			consignee_city: data.consignee_city,
-			consignee_state: data.consignee_state,
-			consignee_province: data.consignee_province,
-			consignee_email: data.consignee_email,
-			length: parseInt(data.length),
-			width: parseInt(data.width),
-			height: parseInt(data.height),
-			weight: parseInt(data.weight),
-			payment_type: data.payment_type,
-			pickup_contact_name: data.pickup_contact_name,
-			pickup_contact_number: data.pickup_contact_number,
-			pickup_address: data.pickup_address,
-			pickup_postal: data.pickup_postal,
-			pickup_country: data.pickup_country,
-			pickup_city: data.pickup_city,
-			pickup_state: data.pickup_state,
-			pickup_province: data.pickup_province,
-		};
-
-		console.log('isValid ', isValid);
-
-		// if () {
-		console.log('bodynya ', body);
-		// } else {
-		// 	console.log('OnWarning ');
-		// 	OnWarning({ text: 'Please check your input form' });
-		// }
-		// PostOrderList()
-	};
+	useEffect(() => {
+		if (lodash.isEmpty(errors) === false) {
+			console.log(errors);
+			OnWarning({ text: 'Please check your input form' });
+		}
+	}, [errors]);
 
 	return (
 		<div className='content'>
@@ -101,19 +59,19 @@ const OrderAdd = () => {
 
 			<div className='header-content'>Add Order</div>
 
-			<form className='c-add-order-form' onSubmit={onSuccess}>
+			<form className='c-add-order-form' onSubmit={handleSubmit}>
 				<div className='add-order-form'>
 					<div className='section-flow'>
 						<div className='section-form'>
 							<div className='form-group'>
 								<FormInput2
 									type='text'
+									name='consignee_name'
 									placeholder='Consignee Name *'
 									value={data.consignee_name || ''}
-									onChange={(e) =>
-										setData({ ...data, consignee_name: e.target.value })
-									}
-									isError={formErrors.consignee_name ? true : false}
+									onChange={handleChange('consignee_name')}
+									required
+									isError={errors.consignee_name ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -121,10 +79,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Consignee Number */**'
 									value={data.consignee_number || ''}
-									onChange={(e) =>
-										setData({ ...data, consignee_number: e.target.value })
-									}
-									isError={formErrors.consignee_number ? true : false}
+									onChange={handleChange('consignee_number')}
+									required
+									isError={errors.consignee_number ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -132,10 +89,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Consignee Address *'
 									value={data.consignee_address || ''}
-									onChange={(e) =>
-										setData({ ...data, consignee_address: e.target.value })
-									}
-									isError={formErrors.consignee_address ? true : false}
+									onChange={handleChange('consignee_address')}
+									required
+									isError={errors.consignee_address ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -143,10 +99,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Consignee Postal */**'
 									value={data.consignee_postal || ''}
-									onChange={(e) =>
-										setData({ ...data, consignee_postal: e.target.value })
-									}
-									isError={formErrors.consignee_postal ? true : false}
+									onChange={handleChange('consignee_postal')}
+									required
+									isError={errors.consignee_postal ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -154,10 +109,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Consignee Country *'
 									value={data.consignee_country || ''}
-									onChange={(e) =>
-										setData({ ...data, consignee_country: e.target.value })
-									}
-									isError={formErrors.consignee_country ? true : false}
+									onChange={handleChange('consignee_country')}
+									required
+									isError={errors.consignee_country ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -165,10 +119,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Consignee City *'
 									value={data.consignee_city || ''}
-									onChange={(e) =>
-										setData({ ...data, consignee_city: e.target.value })
-									}
-									isError={formErrors.consignee_city ? true : false}
+									onChange={handleChange('consignee_city')}
+									required
+									isError={errors.consignee_city ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -176,10 +129,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Consignee State *'
 									value={data.consignee_state || ''}
-									onChange={(e) =>
-										setData({ ...data, consignee_state: e.target.value })
-									}
-									isError={formErrors.consignee_state ? true : false}
+									onChange={handleChange('consignee_state')}
+									required
+									isError={errors.consignee_state ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -187,10 +139,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Consignee Province *'
 									value={data.consignee_province || ''}
-									onChange={(e) =>
-										setData({ ...data, consignee_province: e.target.value })
-									}
-									isError={formErrors.consignee_province ? true : false}
+									onChange={handleChange('consignee_province')}
+									required
+									isError={errors.consignee_province ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -198,16 +149,12 @@ const OrderAdd = () => {
 									type='email'
 									placeholder='Consignee Email'
 									value={data.consignee_email || ''}
-									onChange={(e) =>
-										setData({ ...data, consignee_email: e.target.value })
-									}
-									isError={formErrors.consignee_email ? true : false}
+									onChange={handleChange('consignee_email')}
+									// isError={errors.consignee_email ? true : false}
 								/>
-								{formErrors.consignee_email && (
-									<span className='info-form'>
-										{formErrors.consignee_email}
-									</span>
-								)}
+								{/* {errors.consignee_email && (
+									<span className='info-form'>{errors.consignee_email}</span>
+								)} */}
 							</div>
 						</div>
 						<div className='section-form'>
@@ -216,10 +163,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Pickup Contact Name *'
 									value={data.pickup_contact_name || ''}
-									onChange={(e) =>
-										setData({ ...data, pickup_contact_name: e.target.value })
-									}
-									isError={formErrors.pickup_contact_name ? true : false}
+									onChange={handleChange('pickup_contact_name')}
+									required
+									isError={errors.pickup_contact_name ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -227,10 +173,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Pickup Contact Number */**'
 									value={data.pickup_contact_number || ''}
-									onChange={(e) =>
-										setData({ ...data, pickup_contact_number: e.target.value })
-									}
-									isError={formErrors.pickup_contact_number ? true : false}
+									onChange={handleChange('pickup_contact_number')}
+									required
+									isError={errors.pickup_contact_number ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -238,10 +183,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Pickup Address *'
 									value={data.pickup_address || ''}
-									onChange={(e) =>
-										setData({ ...data, pickup_address: e.target.value })
-									}
-									isError={formErrors.pickup_address ? true : false}
+									onChange={handleChange('pickup_address')}
+									required
+									isError={errors.pickup_address ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -249,10 +193,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Pickup Postal */**'
 									value={data.pickup_postal || ''}
-									onChange={(e) =>
-										setData({ ...data, pickup_postal: e.target.value })
-									}
-									isError={formErrors.pickup_postal ? true : false}
+									onChange={handleChange('pickup_postal')}
+									required
+									isError={errors.pickup_postal ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -260,10 +203,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Pickup Country *'
 									value={data.pickup_country || ''}
-									onChange={(e) =>
-										setData({ ...data, pickup_country: e.target.value })
-									}
-									isError={formErrors.pickup_country ? true : false}
+									onChange={handleChange('pickup_country')}
+									required
+									isError={errors.pickup_country ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -271,10 +213,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Pickup City *'
 									value={data.pickup_city || ''}
-									onChange={(e) =>
-										setData({ ...data, pickup_city: e.target.value })
-									}
-									isError={formErrors.pickup_city ? true : false}
+									onChange={handleChange('pickup_city')}
+									required
+									isError={errors.pickup_city ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -282,10 +223,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Pickup State *'
 									value={data.pickup_state || ''}
-									onChange={(e) =>
-										setData({ ...data, pickup_state: e.target.value })
-									}
-									isError={formErrors.pickup_state ? true : false}
+									onChange={handleChange('pickup_state')}
+									required
+									isError={errors.pickup_state ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -293,10 +233,9 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Pickup Province *'
 									value={data.pickup_province || ''}
-									onChange={(e) =>
-										setData({ ...data, pickup_province: e.target.value })
-									}
-									isError={formErrors.pickup_province ? true : false}
+									onChange={handleChange('pickup_province')}
+									required
+									isError={errors.pickup_province ? true : false}
 								/>
 							</div>
 							<div className='form-group'>
@@ -304,9 +243,7 @@ const OrderAdd = () => {
 									type='text'
 									placeholder='Payment Type'
 									value={data.payment_type || ''}
-									onChange={(e) =>
-										setData({ ...data, payment_type: e.target.value })
-									}
+									onChange={handleChange('payment_type')}
 								/>
 							</div>
 						</div>
@@ -320,9 +257,7 @@ const OrderAdd = () => {
 										type='text'
 										placeholder='Length'
 										value={data.length || ''}
-										onChange={(e) =>
-											setData({ ...data, length: e.target.value })
-										}
+										onChange={handleChange('length')}
 									/>
 								</div>
 								<div className='form-group'>
@@ -330,9 +265,7 @@ const OrderAdd = () => {
 										type='text'
 										placeholder='Width'
 										value={data.width || ''}
-										onChange={(e) =>
-											setData({ ...data, width: e.target.value })
-										}
+										onChange={handleChange('width')}
 									/>
 								</div>
 							</div>
@@ -342,9 +275,7 @@ const OrderAdd = () => {
 										type='text'
 										placeholder='Height'
 										value={data.height || ''}
-										onChange={(e) =>
-											setData({ ...data, height: e.target.value })
-										}
+										onChange={handleChange('height')}
 									/>
 								</div>
 								<div className='form-group'>
@@ -352,9 +283,7 @@ const OrderAdd = () => {
 										type='text'
 										placeholder='Weight'
 										value={data.weight || ''}
-										onChange={(e) =>
-											setData({ ...data, weight: e.target.value })
-										}
+										onChange={handleChange('weight')}
 									/>
 								</div>
 							</div>
