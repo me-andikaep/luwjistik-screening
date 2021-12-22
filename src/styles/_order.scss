@@ -188,6 +188,16 @@
       }
     }
 
+    .section-info{
+      padding: 0px 15px 15px 15px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      font-size: 14px;
+      color: red;
+      font-weight: bold;
+    }
+
     .section-action{
       display: flex;
       justify-content: center;

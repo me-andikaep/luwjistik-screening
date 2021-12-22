@@ -15,7 +15,7 @@ const FormInput2 = forwardRef((props, ref) => {
 	return (
 		<div className={`${isError ? 'error ' : ''} c-custom-form-input-2`}>
 			<input
-				className='custom-input-2'
+				className={`${isError ? 'error ' : ''} custom-input-2`}
 				type={type}
 				ref={inputRef}
 				value={value}
