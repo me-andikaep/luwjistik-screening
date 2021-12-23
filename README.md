@@ -5,8 +5,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Note
 
 ````````````````
- - Untuk login tidak ada validasi. namun ketika salah email atau password akan ada notif / toast print error
- - Untuk add order terdapat validasi, kecuali Consignee Name. Consigne name dapat digunakan untuk test notif print error jika value tidak diinputkan.
+ - In the login there is no validation. but when the email or password is wrong there will be a notification / toast print error.
+ - In the add order there is validation, except for the Consignee Name. Consignee name can be used to test notif print error if value is not entered.
+ - Detail button in actions table only shows coming soon alert.
+ - The application can be used with the 'mobile view' (responsive).
  
 ````````````````
 
