@@ -1,4 +1,5 @@
 import ReactLoading from 'react-loading';
+import PropTypes from 'prop-types';
 
 const Loading = ({ showLoading, text }) => {
 	return (
@@ -23,6 +24,11 @@ const Loading = ({ showLoading, text }) => {
 			</div>
 		</div>
 	);
+};
+
+Loading.propTypes = {
+	showLoading: PropTypes.bool,
+	text: PropTypes.string,
 };
 
 export default Loading;

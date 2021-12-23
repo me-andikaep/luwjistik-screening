@@ -1,24 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import FormInput from '../components/form/FormInput';
 import FormInput2 from '../components/form/FormInput2';
 import Loading from '../components/loading/Loading';
 import { PostOrderList } from '../services/orderServices';
 import { AddOrderValidation } from '../components/validations/AddOrderValidation';
-import { OnWarning } from '../components/toast';
+import { OnWarning, OnError, OnSuccess } from '../components/toast';
 import { useForm } from '../hooks/useForm';
 import lodash from 'lodash';
+import { AddOrderParseBody } from '../components/parsing/AddOrderParseBody';
 
-const OrderAdd = () => {
+const OrderAdd = (props) => {
 	const dispatch = useDispatch();
 	const orderState = useSelector((state) => state?.order);
+
+	console.log('orderState', orderState);
 
 	const validation = AddOrderValidation.validations;
 
 	const { handleSubmit, handleChange, data, errors } = useForm({
 		validations: validation,
 		onSubmit: () => {
-			console.log('datanya', data);
+			const body = AddOrderParseBody(data);
+			PostOrderList(body, dispatch)
+				.then((res) => {
+					if (res) {
+						OnSuccess({ text: 'Order Created.' });
+						props.history.replace('/order');
+					}
+				})
+				.catch((error) => {
+					OnError({ text: error.message });
+				});
 		},
 		initialValues: {
 			consignee_name: '',
@@ -55,7 +67,7 @@ const OrderAdd = () => {
 
 	return (
 		<div className='content'>
-			{/* <Loading showLoading={isLoading} text={'Saving...'} /> */}
+			<Loading showLoading={orderState.loading} text={'Saving...'} />
 
 			<div className='header-content'>Add Order</div>
 

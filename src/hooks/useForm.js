@@ -49,7 +49,6 @@ export const useForm = (options) => {
 
 		if (options?.onSubmit) {
 			options.onSubmit();
-			setErrors({});
 		}
 	};
 

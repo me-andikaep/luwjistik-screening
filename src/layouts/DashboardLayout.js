@@ -9,7 +9,6 @@ const DashboardLayout = (props) => {
 	const [sidebarOpen, setSidebarOpen] = useState(true);
 
 	const getRoutes = (routeList) => {
-		// console.log('routeList', routeList);
 		return routeList.map((prop, key) => {
 			return (
 				<Route

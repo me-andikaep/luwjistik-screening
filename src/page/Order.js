@@ -1,67 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetOrderList } from '../services/orderServices';
 import { OnError } from '../components/toast';
+import ReactLoading from 'react-loading';
 
 const Order = (props) => {
-	const [data, setData] = useState([
-		{
-			order_id: 'ord-1',
-			consignee_name: 'pt a',
-			consignee_number: '001',
-			consignee_address: 'jl. gatsu',
-			consignee_postal: '1212',
-			onsignee_country: 'indo',
-			consignee_city: 'jakarta',
-			consignee_state: 'jakarta',
-			consignee_province: 'dki',
-			consignee_email: 'a@gmail.com',
-			length: 10,
-			width: 20,
-			height: 30,
-			weight: 40,
-			payment_type: 'cash',
-			pickup_contact_name: 'pt b',
-			pickup_contact_number: '002',
-			pickup_address: 'jln margonda',
-			pickup_postal: '1313',
-			pickup_country: 'indo',
-			pickup_city: 'depok',
-			pickup_state: 'depok',
-			pickup_province: 'jawa barat',
-			user_id: 'usr-01',
-		},
-		{
-			order_id: 'ord-1',
-			consignee_name: 'pt a',
-			consignee_number: '001',
-			consignee_address: 'jl. gatsu',
-			consignee_postal: '1212',
-			onsignee_country: 'indo',
-			consignee_city: 'jakarta',
-			consignee_state: 'jakarta',
-			consignee_province: 'dki',
-			consignee_email: 'a@gmail.com',
-			length: 10,
-			width: 20,
-			height: 30,
-			weight: 40,
-			payment_type: 'cash',
-			pickup_contact_name: 'pt b',
-			pickup_contact_number: '002',
-			pickup_address: 'jln margonda',
-			pickup_postal: '1313',
-			pickup_country: 'indo',
-			pickup_city: 'depok',
-			pickup_state: 'depok',
-			pickup_province: 'jawa barat',
-			user_id: 'usr-01',
-		},
-	]);
+	const [data, setData] = useState([]);
 
 	const nf = new Intl.NumberFormat();
 	const dispatch = useDispatch();
 	const orderState = useSelector((state) => state?.order);
+
+	console.log('orderState', orderState);
+	console.log('orderState.loading ', orderState.loading);
 
 	const getOrderList = () => {
 		GetOrderList(dispatch)
@@ -101,7 +53,15 @@ const Order = (props) => {
 						<div className='th'>Action</div>
 					</div>
 					<div className='tbody'>
-						{data.length === 0 ? (
+						{orderState.loading && (
+							<div className='row-td'>
+								<div className='td center'>
+									<ReactLoading type='spinningBubbles' color={'#2893e1'} />
+								</div>
+							</div>
+						)}
+
+						{orderState.loading ? null : data.length === 0 ? (
 							<div className='row-td'>
 								<div className='td center'>Tidak Ada data</div>
 							</div>

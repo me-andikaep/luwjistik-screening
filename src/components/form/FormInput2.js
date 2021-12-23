@@ -1,11 +1,12 @@
 import { forwardRef } from 'react';
+import PropTypes from 'prop-types';
 
 const FormInput2 = forwardRef((props, ref) => {
 	const {
 		onChange,
 		value,
 		inputRef,
-		className,
+		// className,
 		style,
 		type,
 		placeholder,
@@ -27,5 +28,28 @@ const FormInput2 = forwardRef((props, ref) => {
 		</div>
 	);
 });
+
+FormInput2.propTypes = {
+	onChange: PropTypes.func,
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	inputRef: PropTypes.any,
+	// className: PropTypes.oneOfType([
+	// 	PropTypes.string,
+	// 	PropTypes.func,
+	// 	PropTypes.object,
+	// ]),
+	style: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.func,
+		PropTypes.object,
+	]),
+	type: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.func,
+		PropTypes.object,
+	]),
+	placeholder: PropTypes.string,
+	isError: PropTypes.bool,
+};
 
 export default FormInput2;

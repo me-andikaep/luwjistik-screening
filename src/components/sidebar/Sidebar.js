@@ -1,12 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { FiPackage } from 'react-icons/fi';
 import { MdExpand, MdPermContactCalendar } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
-	// console.log('setIsOpen', isOpen);
-
-	// const currentLocation = window.location.pathname;
-
 	return (
 		<div className={`${isOpen ? '' : 'close'} c-sidebar`}>
 			<ul className={`${isOpen ? '' : 'close'} nav`}>
@@ -37,6 +34,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 			</div>
 		</div>
 	);
+};
+
+Sidebar.propTypes = {
+	isOpen: PropTypes.bool,
+	setIsOpen: PropTypes.func,
 };
 
 export default Sidebar;

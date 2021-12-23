@@ -22,9 +22,9 @@ const Login = () => {
 		e.preventDefault();
 
 		// let email = emailRef?.current?.value;
+		// let password = passwordRef?.current?.value;
 		let email = 'raymond@luwjistik.com';
 		let password = 'e2e0334ec93288bc039a2c2f614cb16a';
-		// let password = passwordRef?.current?.value;
 
 		console.log(email);
 		console.log(password);

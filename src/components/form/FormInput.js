@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import PropTypes from 'prop-types';
 
 const FormInput = forwardRef((props, ref) => {
 	const { onChange, value, inputRef, className, style, type, prefix, suffix } =
@@ -19,5 +20,29 @@ const FormInput = forwardRef((props, ref) => {
 		</div>
 	);
 });
+
+FormInput.propTypes = {
+	onChange: PropTypes.func,
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	inputRef: PropTypes.any,
+	className: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.func,
+		PropTypes.object,
+	]),
+	style: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.func,
+		PropTypes.object,
+	]),
+	type: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.func,
+		PropTypes.object,
+	]),
+	prefix: PropTypes.element,
+	suffix: PropTypes.element,
+};
+
 
 export default FormInput;
