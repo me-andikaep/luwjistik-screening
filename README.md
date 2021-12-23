@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Note
+
+````````````````
+ - Untuk login tidak ada validasi. namun ketika salah email atau password akan ada notif / toast print error
+ - Untuk add order terdapat validasi, kecuali Consignee Name. Consigne name dapat digunakan untuk test notif print error jika value tidak diinputkan.
+ 
+````````````````
+
 ## Available Scripts
 
 In the project directory, you can run:

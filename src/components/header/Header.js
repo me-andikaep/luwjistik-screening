@@ -19,7 +19,7 @@ const Header = (props) => {
 
 	return (
 		<div className='header-container'>
-			<div>Order</div>
+			<div className='order-title'>Orderin</div>
 			<button
 				className={`${loading ? 'loading' : ''}  btn-logout`}
 				onClick={() => onLogout()}

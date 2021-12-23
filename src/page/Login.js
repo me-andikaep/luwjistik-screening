@@ -24,18 +24,14 @@ const Login = () => {
 		let email = emailRef?.current?.value;
 		let password = passwordRef?.current?.value;
 
-		console.log(email);
-		console.log(password);
 		LoginHandler({ email: email, password: password }, dispatch)
 			.then((res) => {
-				console.log('res login', res);
 				history.push('/order');
 			})
 			.catch((err) => {
-				console.log('err login', err.message);
 				OnError({ text: err.message });
 			});
-	};;
+	};
 
 	return (
 		<div className='container-login'>
@@ -48,7 +44,7 @@ const Login = () => {
 					<div className='form-group'>
 						<div className='title-login'>Email</div>
 						<FormInput
-							type='text'
+							type='email'
 							className='c-custom-input-1'
 							inputRef={emailRef}
 						/>

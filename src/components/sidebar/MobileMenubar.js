@@ -5,7 +5,7 @@ import { MdPermContactCalendar } from 'react-icons/md';
 const MobileMenubar = (props) => {
 	const onActiveCssBorderTop = {
 		position: 'absolute',
-		borderTop: '5px solid #6aa055',
+		borderTop: '5px solid #2893e1',
 		width: '30px',
 		top: '0',
 	};

@@ -12,8 +12,6 @@ const Order = (props) => {
 	const dispatch = useDispatch();
 	const orderState = useSelector((state) => state?.order);
 
-	console.log('orderState', orderState);
-	console.log('orderState.loading ', orderState.loading);
 
 	const getOrderList = () => {
 		GetOrderList(dispatch)
@@ -123,7 +121,12 @@ const Order = (props) => {
 									</div>
 									<div className='td center br'>{dt.payment_type}</div>
 									<div className='td center'>
-										<button className='btn-action'>Detail</button>
+										<button
+											className='btn-action'
+											onClick={() => alert('cooming soon')}
+										>
+											Detail
+										</button>
 									</div>
 								</div>
 							))

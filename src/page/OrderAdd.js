@@ -13,7 +13,6 @@ const OrderAdd = (props) => {
 	const dispatch = useDispatch();
 	const orderState = useSelector((state) => state?.order);
 
-	console.log('orderState', orderState);
 
 	const validation = AddOrderValidation.validations;
 
@@ -60,7 +59,6 @@ const OrderAdd = (props) => {
 
 	useEffect(() => {
 		if (lodash.isEmpty(errors) === false) {
-			console.log(errors);
 			OnWarning({ text: 'Please check your input form' });
 		}
 	}, [errors]);

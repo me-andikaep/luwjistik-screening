@@ -36,7 +36,6 @@ export const PostOrderList = async (body, dispatch) => {
 			body
 		);
 		if (response.status === 200) {
-			console.log('response post', response);
 			dispatch({
 				type: Actions.SUCCESS_POST_ORDER,
 				order: response.data?.data,
